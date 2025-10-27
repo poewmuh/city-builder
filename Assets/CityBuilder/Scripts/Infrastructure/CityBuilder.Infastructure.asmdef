@@ -1,0 +1,22 @@
+{
+    "name": "CityBuilder.Infastructure",
+    "rootNamespace": "",
+    "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:08b38f39e2d9e594389b7a4cf4c2c338",
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
+        "GUID:14ac551a519a1054ea195f5914d6a15d",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:1c162f112eb248042adc426f4e544d4e",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

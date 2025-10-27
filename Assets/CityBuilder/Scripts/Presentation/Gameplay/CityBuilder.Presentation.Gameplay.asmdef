@@ -1,0 +1,22 @@
+{
+    "name": "CityBuilder.Presentation.Gameplay",
+    "rootNamespace": "",
+    "references": [
+        "GUID:14ac551a519a1054ea195f5914d6a15d",
+        "GUID:91959bfabb8191349bb7bf6e9923dc8c",
+        "GUID:2bafac87e7f4b9b418d9448d219b01ab",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:08b38f39e2d9e594389b7a4cf4c2c338",
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

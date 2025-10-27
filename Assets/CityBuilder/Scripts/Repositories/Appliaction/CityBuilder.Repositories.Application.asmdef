@@ -1,0 +1,16 @@
+{
+    "name": "CityBuilder.Repositories.Application",
+    "rootNamespace": "",
+    "references": [
+        "GUID:09bde46e79141f34b8572d02dfc13259"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
