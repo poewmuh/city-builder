@@ -35,7 +35,7 @@ namespace CityBuilder.Domain.Gameplay.Models
             
             foreach (var build in AllBuildings)
             {
-                if (build.GridPosition == position)
+                if (build.Position == position)
                 {
                     building = build;
                     return true;
@@ -49,7 +49,7 @@ namespace CityBuilder.Domain.Gameplay.Models
         {
             foreach (var building in AllBuildings)
             {
-                if (building.GridPosition == position) return true;
+                if (building.Position == position) return true;
             }
 
             return false;
