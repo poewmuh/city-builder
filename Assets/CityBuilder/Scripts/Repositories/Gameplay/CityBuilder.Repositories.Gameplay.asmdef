@@ -2,7 +2,8 @@
     "name": "CityBuilder.Repositories.Gameplay",
     "rootNamespace": "",
     "references": [
-        "GUID:14ac551a519a1054ea195f5914d6a15d"
+        "GUID:14ac551a519a1054ea195f5914d6a15d",
+        "GUID:324caed91501a9c47a04ebfd87b68794"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

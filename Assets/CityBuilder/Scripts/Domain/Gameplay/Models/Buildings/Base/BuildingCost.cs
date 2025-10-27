@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CityBuilder.Domain.Gameplay.Models
+namespace CityBuilder.Domain.Gameplay.Models.Buildings.Base
 {
     public readonly struct Cost
     {

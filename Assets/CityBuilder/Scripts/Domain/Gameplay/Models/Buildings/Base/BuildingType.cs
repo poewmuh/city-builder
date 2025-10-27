@@ -1,4 +1,4 @@
-namespace CityBuilder.Domain.Gameplay.Models
+namespace CityBuilder.Domain.Gameplay.Models.Buildings.Base
 {
     /// <summary>
     /// Тип здания в городе.
