@@ -3,16 +3,14 @@ using CityBuilder.Domain.Gameplay.Models.Buildings.Base;
 
 namespace CityBuilder.Domain.Gameplay.MessagesDTO.Buildings
 {
-    public readonly struct BuildingPlacedMessage
+    public class PlaceBuildingCommand
     {
-        public readonly int BuildingId;
         public readonly BuildingType BuildingType;
         public readonly GridPosition Position;
         public readonly int Rotation;
 
-        public BuildingPlacedMessage(int id, BuildingType buildingType, GridPosition position, int rotation)
+        public PlaceBuildingCommand(BuildingType buildingType, GridPosition position, int rotation)
         {
-            BuildingId = id;
             BuildingType = buildingType;
             Position = position;
             Rotation = rotation;

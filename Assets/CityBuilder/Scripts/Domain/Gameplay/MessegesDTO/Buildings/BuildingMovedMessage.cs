@@ -1,14 +1,14 @@
-using UnityEngine;
+using CityBuilder.Domain.Gameplay.Models;
 
 namespace CityBuilder.Domain.Gameplay.MessagesDTO.Buildings
 {
     public readonly struct BuildingMovedMessage
     {
         public readonly int BuildingId;
-        public readonly Vector3Int FromPosition;
-        public readonly Vector3Int ToPosition;
+        public readonly GridPosition FromPosition;
+        public readonly GridPosition ToPosition;
 
-        public BuildingMovedMessage(int buildingId, Vector3Int fromPosition, Vector3Int toPosition)
+        public BuildingMovedMessage(int buildingId, GridPosition fromPosition, GridPosition toPosition)
         {
             BuildingId = buildingId;
             FromPosition = fromPosition;
