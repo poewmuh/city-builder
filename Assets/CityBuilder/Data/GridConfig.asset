@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 233de3558e47a744a95d44f4b81127ef, type: 3}
   m_Name: GridConfig
   m_EditorClassIdentifier: 
-  gridWidth: 10
+  gridWidth: 15
   gridHeight: 10
-  cellSize: 3
+  cellSize: 2
   gridColor: {r: 1, g: 1, b: 1, a: 1}
   validColor: {r: 0, g: 1, b: 0, a: 1}
   invalidColor: {r: 1, g: 0, b: 0, a: 1}
