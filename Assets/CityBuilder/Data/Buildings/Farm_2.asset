@@ -18,4 +18,4 @@ MonoBehaviour:
   buildCost: 30
   income: 20
   prefab: {fileID: 0}
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 145b6ea4c47f8f54686c1b0655c1a62a, type: 3}

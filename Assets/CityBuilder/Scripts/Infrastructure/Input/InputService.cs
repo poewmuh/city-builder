@@ -28,15 +28,15 @@ namespace CityBuilder.Infastructure.Input
             _inputActions = new CityBuilderInputActions();
             _inputActions.Enable();
             _inputActions.Gameplay.SelectPrefab1.PerformedAsObservable()
-                .Subscribe(_ => _prefabSelectedPublisher.Publish(new BuildingPrefabSelectedInputMessage(0)))
-                .AddTo(_disposable);
-
-            _inputActions.Gameplay.SelectPrefab2.PerformedAsObservable()
                 .Subscribe(_ => _prefabSelectedPublisher.Publish(new BuildingPrefabSelectedInputMessage(1)))
                 .AddTo(_disposable);
 
-            _inputActions.Gameplay.SelectPrefab3.PerformedAsObservable()
+            _inputActions.Gameplay.SelectPrefab2.PerformedAsObservable()
                 .Subscribe(_ => _prefabSelectedPublisher.Publish(new BuildingPrefabSelectedInputMessage(2)))
+                .AddTo(_disposable);
+
+            _inputActions.Gameplay.SelectPrefab3.PerformedAsObservable()
+                .Subscribe(_ => _prefabSelectedPublisher.Publish(new BuildingPrefabSelectedInputMessage(3)))
                 .AddTo(_disposable);
 
             _inputActions.Gameplay.Rotate.PerformedAsObservable()

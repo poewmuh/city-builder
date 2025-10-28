@@ -20,6 +20,7 @@ namespace CityBuilder.Installers.Gameplay
         [SerializeField] private AllBuildingsConfig _allBuildingsConfig;
         [Header("Links")]
         [SerializeField] private GridView _gridView;
+        [SerializeField] private GameplayUIView _uiView;
         
         protected override void Configure(IContainerBuilder builder)
         {
@@ -47,15 +48,15 @@ namespace CityBuilder.Installers.Gameplay
             builder.RegisterEntryPoint<MoveBuildingUseCase>();
             builder.RegisterEntryPoint<DeleteBuildingUseCase>();
             builder.RegisterEntryPoint<UpgradeBuildingUseCase>();
+            builder.RegisterEntryPoint<IncomeGenerationUseCase>();
             
             // Presentation
             builder.RegisterInstance(_gridView);
+            builder.RegisterInstance(_uiView);
             builder.RegisterEntryPoint<GridPresenter>();
             builder.RegisterEntryPoint<BuildingPresenter>();
             builder.RegisterEntryPoint<BuildingPlacementPresenter>();
-            
-            
-            //builder.RegisterEntryPoint<GameplayEntryPoint>();
+            builder.RegisterEntryPoint<GameplayUIPresenter>();
         }
     }
 }

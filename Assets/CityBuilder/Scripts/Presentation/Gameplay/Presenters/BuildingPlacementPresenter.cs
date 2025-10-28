@@ -1,4 +1,5 @@
 using System;
+using CityBuilder.Domain.Gameplay.MessagesDTO;
 using CityBuilder.Domain.Gameplay.MessagesDTO.Buildings;
 using CityBuilder.Domain.Gameplay.MessagesDTO.Grid;
 using CityBuilder.Domain.Gameplay.Models.Buildings.Base;
@@ -12,6 +13,8 @@ namespace CityBuilder.Presentation.Gameplay.Presenters
     public class BuildingPlacementPresenter : IInitializable, IDisposable
     {
         [Inject] private readonly ISubscriber<GridClickedMessage> _gridClickedSub;
+        [Inject] private readonly ISubscriber<BuildingPrefabSelectedInputMessage> _buildingSelectedSub;
+        
         [Inject] private readonly IPublisher<PlaceBuildingCommand> _placeBuildingPub;
 
         private readonly CompositeDisposable _disposables = new();
@@ -20,11 +23,17 @@ namespace CityBuilder.Presentation.Gameplay.Presenters
         public void Initialize()
         {
             _gridClickedSub.Subscribe(OnGridClicked).AddTo(_disposables);
+            _buildingSelectedSub.Subscribe(OnTypeChanged).AddTo(_disposables);
         }
 
         private void OnGridClicked(GridClickedMessage msg)
         {
             _placeBuildingPub.Publish(new PlaceBuildingCommand(_selectedBuildingType, msg.Position, 0));
+        }
+
+        private void OnTypeChanged(BuildingPrefabSelectedInputMessage msg)
+        {
+            SelectBuilding((BuildingType)msg.PrefabIndex);
         }
 
         public void SelectBuilding(BuildingType type)
