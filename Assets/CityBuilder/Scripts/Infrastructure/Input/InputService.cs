@@ -4,15 +4,17 @@ using CityBuilder.Utilities;
 using MessagePipe;
 using UniRx;
 using UnityEngine;
+using VContainer;
 using VContainer.Unity;
 
 namespace CityBuilder.Infastructure.Input
 {
     public class InputService : IInitializable, IDisposable
     {
-        private readonly IPublisher<BuildingPrefabSelectedMessage> _prefabSelectedPublisher;
-        private readonly IPublisher<RotateBuildingMessage> _rotatePublisher;
-        private readonly IPublisher<DeleteBuildingMessage> _deletePublisher;
+        [Inject] private readonly IPublisher<BuildingPrefabSelectedInputMessage> _prefabSelectedPublisher;
+        [Inject] private readonly IPublisher<RotateBuildingInputMessage> _rotatePublisher;
+        [Inject] private readonly IPublisher<DeleteBuildingInputMessage> _deletePublisher;
+        [Inject] private readonly IPublisher<ClickActionInputMessage> _clickedPublisher;
         
         private CityBuilderInputActions _inputActions;
         private readonly CompositeDisposable _disposable = new();
@@ -21,39 +23,32 @@ namespace CityBuilder.Infastructure.Input
         public float Zoom => _inputActions.Gameplay.CameraZoom.ReadValue<float>();
         public Vector2 MousePosition => _inputActions.Gameplay.MousePosition.ReadValue<Vector2>();
         
-        public InputService(
-            IPublisher<BuildingPrefabSelectedMessage> prefabSelectedPublisher,
-            IPublisher<RotateBuildingMessage> rotatePublisher,
-            IPublisher<DeleteBuildingMessage> deletePublisher)
-        
-        {
-            _prefabSelectedPublisher = prefabSelectedPublisher;
-            _rotatePublisher = rotatePublisher;
-            _deletePublisher = deletePublisher;
-        }
-        
         public void Initialize()
         {
             _inputActions = new CityBuilderInputActions();
             _inputActions.Enable();
             _inputActions.Gameplay.SelectPrefab1.PerformedAsObservable()
-                .Subscribe(_ => _prefabSelectedPublisher.Publish(new BuildingPrefabSelectedMessage(0)))
+                .Subscribe(_ => _prefabSelectedPublisher.Publish(new BuildingPrefabSelectedInputMessage(0)))
                 .AddTo(_disposable);
 
             _inputActions.Gameplay.SelectPrefab2.PerformedAsObservable()
-                .Subscribe(_ => _prefabSelectedPublisher.Publish(new BuildingPrefabSelectedMessage(1)))
+                .Subscribe(_ => _prefabSelectedPublisher.Publish(new BuildingPrefabSelectedInputMessage(1)))
                 .AddTo(_disposable);
 
             _inputActions.Gameplay.SelectPrefab3.PerformedAsObservable()
-                .Subscribe(_ => _prefabSelectedPublisher.Publish(new BuildingPrefabSelectedMessage(2)))
+                .Subscribe(_ => _prefabSelectedPublisher.Publish(new BuildingPrefabSelectedInputMessage(2)))
                 .AddTo(_disposable);
 
             _inputActions.Gameplay.Rotate.PerformedAsObservable()
-                .Subscribe(_ => _rotatePublisher.Publish(new RotateBuildingMessage()))
+                .Subscribe(_ => _rotatePublisher.Publish(new RotateBuildingInputMessage()))
                 .AddTo(_disposable);
 
             _inputActions.Gameplay.Delete.PerformedAsObservable()
-                .Subscribe(_ => _deletePublisher.Publish(new DeleteBuildingMessage()))
+                .Subscribe(_ => _deletePublisher.Publish(new DeleteBuildingInputMessage()))
+                .AddTo(_disposable);
+            
+            _inputActions.Gameplay.Click.PerformedAsObservable()
+                .Subscribe(_ => _clickedPublisher.Publish(new ClickActionInputMessage()))
                 .AddTo(_disposable);
         }
         

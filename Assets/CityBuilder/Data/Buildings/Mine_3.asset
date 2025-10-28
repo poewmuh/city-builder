@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Mine_3
   m_EditorClassIdentifier: 
   buildingType: 3
-  level: 1
-  displayName: "\u041E\u0444\u0438\u0441"
+  level: 3
+  displayName: "\u041B\u044E\u0431\u043E\u0432\u044C"
   buildCost: 30
   income: 20
   prefab: {fileID: 0}

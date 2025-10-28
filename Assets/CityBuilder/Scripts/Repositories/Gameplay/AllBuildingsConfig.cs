@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CityBuilder.Repositories.Gameplay
 {
-    [CreateAssetMenu(fileName = "BuildingDataRepository", menuName = "Data/AllBuildingsConfig")]
+    [CreateAssetMenu(fileName = "AllBuildingsConfig", menuName = "Data/AllBuildingsConfig")]
     public class AllBuildingsConfig : ScriptableObject, IBuildingsDataConfig
     {
         [SerializeField] private List<BuildingConfig> _allBuildingsConfig;
@@ -42,6 +42,19 @@ namespace CityBuilder.Repositories.Gameplay
             }
 
             return types;
+        }
+        
+        public Sprite GetBuildingIcon(BuildingType type, int level)
+        {
+            foreach (var config in _allBuildingsConfig)
+            {
+                if (config != null && config.BuildingType == type && config.BuildingLevel == level)
+                {
+                    return config.Icon;
+                }
+            }
+
+            return null;
         }
 
         private void InitializeCache()

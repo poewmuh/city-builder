@@ -16,7 +16,7 @@ namespace CityBuilder.UseCases.Gameplay
         private const string NO_DATA_KEY = "Нет данных о таком здании.";
         private const string NO_GOLD = "Нужно больше золота.";
         
-        [Inject] private BuildingsController _buildingsController;
+        [Inject] private BuildingsSystem _buildingsSystem;
         [Inject] private PlayerResources _playerResources;
         [Inject] private IBuildingsDataConfig _buildingDataConfig;
 
@@ -34,34 +34,36 @@ namespace CityBuilder.UseCases.Gameplay
 
         private void PlaceBuildingProcess(PlaceBuildingCommand command)
         {
-            if (_buildingsController.IsPosOccupied(command.Position))
+            if (_buildingsSystem.IsPosOccupied(command.Position))
             {
-                PublishFailedEvent(BuildingOperationType.PlaceBuilding, OCCUPIED_POSITION_KEY);
+                PublishFailedEvent(OCCUPIED_POSITION_KEY);
                 return;
             }
 
             var buildingData = _buildingDataConfig.GetBuildingData(command.BuildingType, new BuildingLevel(1));
             if (buildingData == null)
             {
-                PublishFailedEvent(BuildingOperationType.PlaceBuilding, NO_DATA_KEY);
+                PublishFailedEvent(NO_DATA_KEY);
                 return;
             }
 
             if (!_playerResources.TrySpendGold(buildingData.BuildCost))
             {
-                PublishFailedEvent(BuildingOperationType.PlaceBuilding, NO_GOLD);
+                PublishFailedEvent(NO_GOLD);
+                return;
             }
 
-            var newBuilding = _buildingsController.AddNewBuilding(command.BuildingType, buildingData.BuildingLevel,
+            var newBuilding = _buildingsSystem.AddNewBuilding(command.BuildingType, buildingData.BuildingLevel,
                 command.Position, command.Rotation);
-
+            
             _buildingPlacedPub.Publish(new BuildingPlacedMessage(newBuilding.Id, newBuilding.BuildingType,
                 newBuilding.Position, newBuilding.Rotation));
+            _resourcesChangedPub.Publish(new ResourcesChangedMessage(_playerResources.Gold));
         }
 
-        private void PublishFailedEvent(BuildingOperationType type, string reason)
+        private void PublishFailedEvent(string reason)
         {
-            _failedPub.Publish(new BuildingOperationFailedMessage(type, reason));
+            _failedPub.Publish(new BuildingOperationFailedMessage(BuildingOperationType.PlaceBuilding, reason));
         }
         
         public void Dispose()

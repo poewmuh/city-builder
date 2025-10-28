@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CityBuilder.Repositories.Gameplay
 {
-    [CreateAssetMenu(fileName = "BuildingConfig", menuName = "Data/Building Config")]
+    [CreateAssetMenu(fileName = "BuildingConfig", menuName = "Data/BuildingConfig")]
     public class BuildingConfig : ScriptableObject
     {
         [Title("Build Info")]

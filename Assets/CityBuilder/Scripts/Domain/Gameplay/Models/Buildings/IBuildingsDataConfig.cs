@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CityBuilder.Domain.Gameplay.Models.Buildings.Base;
+using UnityEngine;
 
 namespace CityBuilder.Domain.Gameplay.Models.Buildings
 {
@@ -8,5 +9,6 @@ namespace CityBuilder.Domain.Gameplay.Models.Buildings
         BuildingData GetBuildingData(BuildingType type, BuildingLevel level);
         bool HasNextLevel(BuildingType type, BuildingLevel currentLevel);
         List<BuildingType> GetTypesForFirstBuild();
+        public Sprite GetBuildingIcon(BuildingType type, int level);
     }
 }

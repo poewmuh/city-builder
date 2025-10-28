@@ -1,16 +1,18 @@
 namespace CityBuilder.Domain.Gameplay.MessagesDTO
 {
-    public readonly struct BuildingPrefabSelectedMessage
+    public readonly struct BuildingPrefabSelectedInputMessage
     {
         public readonly int PrefabIndex;
 
-        public BuildingPrefabSelectedMessage(int prefabIndex)
+        public BuildingPrefabSelectedInputMessage(int prefabIndex)
         {
             PrefabIndex = prefabIndex;
         }
     }
     
-    public readonly struct RotateBuildingMessage { }
+    public readonly struct RotateBuildingInputMessage { }
     
-    public readonly struct DeleteBuildingMessage { }
+    public readonly struct DeleteBuildingInputMessage { }
+    
+    public readonly struct ClickActionInputMessage { }
 }
