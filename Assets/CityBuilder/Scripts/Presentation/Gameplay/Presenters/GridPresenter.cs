@@ -1,5 +1,6 @@
 using System;
 using CityBuilder.Domain.Gameplay.MessagesDTO;
+using CityBuilder.Domain.Gameplay.MessagesDTO.Buildings;
 using CityBuilder.Domain.Gameplay.MessagesDTO.Grid;
 using CityBuilder.Domain.Gameplay.Models;
 using CityBuilder.Domain.Gameplay.Models.Buildings;
@@ -25,6 +26,7 @@ namespace CityBuilder.Presentation.Gameplay.Presenters
 
         [Inject] private readonly IPublisher<GridHoveredMessage> _gridHoveredPub;
         [Inject] private readonly IPublisher<GridClickedMessage> _gridClickedPub;
+        [Inject] private readonly IPublisher<BuildingSelectedMessage> _buildingSelectedPub;
         [Inject] private readonly ISubscriber<ClickActionInputMessage> _clickActionSub;
 
         private readonly CompositeDisposable _disposables = new();
@@ -65,7 +67,13 @@ namespace CityBuilder.Presentation.Gameplay.Presenters
         {
             var gridPos = GetMouseGridPos();
 
-            if (_gridSystem.IsPositionValid(gridPos))
+            if (!_gridSystem.IsPositionValid(gridPos)) return;
+            
+            if (_buildingsSystem.TryGetBuildingAt(gridPos, out var building))
+            {
+                _buildingSelectedPub.Publish(new BuildingSelectedMessage(building.Id, gridPos));
+            }
+            else
             {
                 _gridClickedPub.Publish(new GridClickedMessage(gridPos));
             }

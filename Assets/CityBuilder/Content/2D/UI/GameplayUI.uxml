@@ -1,12 +1,19 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement name="root" style="flex-grow: 1;">
-        <ui:VisualElement name="top-panel" style="flex-grow: 1; flex-direction: column-reverse; align-items: center; flex-wrap: nowrap;">
+        <ui:VisualElement name="top-panel" style="flex-grow: 0; flex-direction: column-reverse; align-items: center; flex-wrap: nowrap;">
             <ui:VisualElement name="resources" style="flex-grow: 1; align-items: stretch; justify-content: flex-end; align-self: stretch; flex-direction: row; flex-wrap: wrap; -unity-text-align: middle-center; white-space: normal; align-content: flex-start; padding-top: 70px; padding-right: 70px; padding-left: 70px; padding-bottom: 70px;">
                 <ui:Label text="GOLD:" name="gold-view" style="height: 48px; width: 154px; -unity-text-align: middle-center; flex-grow: 0; flex-shrink: 1; font-size: 50px; color: rgb(255, 255, 255); flex-direction: column;" />
                 <ui:Label text="-1" name="gold-label" style="height: 48px; width: 154px; -unity-text-align: middle-center; flex-grow: 0; font-size: 50px; color: rgb(255, 255, 255); flex-shrink: 0;" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="bottom-panel" style="flex-grow: 1; padding-top: 70px; padding-right: 70px; padding-left: 70px; padding-bottom: 70px; justify-content: center;">
+        <ui:VisualElement name="left-panel" enabled="true" style="flex-grow: 0; align-items: stretch; justify-content: flex-start; align-self: stretch; height: 129px; width: 228px;">
+            <ui:VisualElement name="building-info-panel" style="flex-grow: 1;">
+                <ui:Button text="Upgrade" name="upgrade-button" style="font-size: 50px;" />
+                <ui:Button text="Move" name="move-button" enable-rich-text="true" style="font-size: 50px;" />
+                <ui:Button text="Delete" name="delete-button" style="font-size: 50px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="bottom-panel" style="flex-grow: 0; padding-top: 70px; padding-right: 70px; padding-left: 70px; padding-bottom: 70px; justify-content: flex-start; flex-shrink: 1; align-self: center; height: 745px; width: 997px;">
             <ui:VisualElement name="building-selection" style="flex-grow: 1; align-items: auto; justify-content: center; align-self: auto; flex-direction: row; align-content: auto;">
                 <ui:Button text="Палатка" name="house-button" style="font-size: 55px;" />
                 <ui:Button text="Птицефабрика" name="farm-button" style="font-size: 55px;" />
